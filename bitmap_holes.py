@@ -38,21 +38,21 @@ def BitmapHoles(strArr):
             stack = [(i,j)]
             while stack:
                 coords = stack.pop()
-                checked.add(coords)
-                if bitmap[coords] == 0 and coords not in hole:
-                    hole.add(coords)
-                    if flag == True:
-                        print(coords)
-                        hole_count += 1
-                        flag = False
-                    if i - 1 >= 0 and (i-1,j) not in checked:
-                        stack.append((i-1,j))
-                    if i + 1 < len(strArr) and (i+1,j) not in checked:
-                        stack.append((i+1,j))
-                    if j - 1 >= 0 and (i,j-1) not in checked:
-                        stack.append((i,j-1))
-                    if j + 1 < len(strArr[i]) and (i,j+1) not in checked:
-                        stack.append((i,j+1))
+                if coords not in checked:
+                    checked.add(coords)
+                    if bitmap[coords] == 0 and coords not in hole:
+                        hole.add(coords)
+                        if flag == True:
+                            hole_count += 1
+                            flag = False
+                        if coords[0] - 1 >= 0 and (coords[0]-1,coords[1]) not in checked:
+                            stack.append((coords[0]-1,coords[1]))
+                        if coords[0] + 1 < len(strArr) and (coords[0]+1,coords[1]) not in checked:
+                            stack.append((coords[0]+1,coords[1]))
+                        if coords[1] - 1 >= 0 and (coords[0],coords[1]-1) not in checked:
+                            stack.append((coords[0],coords[1]-1))
+                        if coords[1] + 1 < len(strArr[coords[0]]) and (coords[0],coords[1]+1) not in checked:
+                            stack.append((coords[0],coords[1]+1))
             flag = True
             
     return hole_count
