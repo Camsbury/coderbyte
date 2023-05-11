@@ -21,6 +21,9 @@ Output:124343
 
 """
 
-def ArrayRotation(array):
-    r = array[0]
-    return "".join([str(a) for a in array[r:len(array)]] + [str(a) for a in array[:r]])
+def ArrayChallenge(arr):
+  N= arr[0]% len(arr)
+  rotated= arr[N:]+ arr[:N]
+  result= ''.join(map(str,rotated))
+  return result
+
